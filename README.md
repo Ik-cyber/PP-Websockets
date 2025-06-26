@@ -32,3 +32,5 @@ web-socket-chatApp/
 │   └── index.html             # Simple HTML + JS UI to test the chat
 └── README.md
 ```
+
+### Still In progress though.

@@ -7,15 +7,13 @@ import (
 	"github.com/gorilla/websocket"
 )
 
-// ClientList is a map used to help manage a map of clients
 type ClientList map[*Client]bool
 
-// Client is a websocket client, basically a frontend visitor
 type Client struct {
 	// the websocket connection
 	connection *websocket.Conn
 
-	// manager is the manager used to manage the client
+	// manager is the manager used to manage the client but implements the ManagerInterface
 	manager shared.ManagerInterface
 }
 
@@ -34,10 +32,7 @@ func (c *Client) ReadMessages() {
 		// function is done
 		c.manager.RemoveClient(c)
 	}()
-	// Loop Forever
 	for {
-		// ReadMessage is used to read the next message in queue
-		// in the connection
 		messageType, payload, err := c.connection.ReadMessage()
 		if err != nil {
 			// If Connection is closed, we will Recieve an error here
